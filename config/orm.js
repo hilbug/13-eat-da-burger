@@ -1,111 +1,106 @@
-const connection = require('./connection');
+// ORM class provided by Bobby
+// Import MySQL connection.
+class ORM {
+    connection;
 
-////////////// from Cats 13-3 exercise #17 //////////////////////////////
-const printQuestionMarks = (num) => {
-    var arr = [];
-
-    for (var i = 0; i < num; i++) {
-        arr.push("?");
+    constructor(connection) {
+        this.connection = connection;
     }
 
-    return arr.toString();
-}
+    query = (queryString, vals) => {
+        return new Promise((resolve, reject) => {
+            this.connection.query(queryString, vals, function (err, result) {
+                if (err) {
+                    reject(err);
+                }
+                resolve(result);
+            });
+        })
+    };
+    ////////////// from Cats 13-3 exercise #17 //////////////////////////////
+    printQuestionMarks = (num) => {
+        var arr = [];
 
-// Helper function to convert object key/value pairs to SQL syntax
-const objToSql = (ob) => {
-    var arr = [];
-
-    // loop through the keys and push the key/value as a string int arr
-    for (var key in ob) {
-        var value = ob[key];
-        // check to skip hidden properties
-        if (Object.hasOwnProperty.call(ob, key)) {
-            // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
-            if (typeof value === "string" && value.indexOf(" ") >= 0) {
-                value = "'" + value + "'";
-            }
-            // e.g. {burger_name: 'Cheeseburger'} => ["burger_name='Lana Del Grey'"]
-            // e.g. {devoured: true} => ["devoured=true"]
-            arr.push(key + "=" + value);
+        for (var i = 0; i < num; i++) {
+            arr.push("?");
         }
+
+        return arr.toString();
     }
 
-    // translate array of strings to a single comma-separated string
-    return arr.toString();
+    // Helper function to convert object key/value pairs to SQL syntax
+    objToSql = (ob) => {
+        var arr = [];
+
+        // loop through the keys and push the key/value as a string int arr
+        for (var key in ob) {
+            var value = ob[key];
+            // check to skip hidden properties
+            if (Object.hasOwnProperty.call(ob, key)) {
+                // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+                if (typeof value === "string" && value.indexOf(" ") >= 0) {
+                    value = "'" + value + "'";
+                }
+                // e.g. {burger_name: 'Cheeseburger'} => ["burger_name='Lana Del Grey'"]
+                // e.g. {devoured: true} => ["devoured=true"]
+                arr.push(key + "=" + value);
+            }
+        }
+
+        // translate array of strings to a single comma-separated string
+        return arr.toString();
+    }
+    /////////////////////////////////////////////////////////////////////////////
+
+
+    selectAll = (tableInput) => {
+        let queryString = "SELECT * FROM ?? ;";
+
+        console.log(queryString);
+
+        return this.query(queryString);
+    }
+
+    insertOne = (table, cols, vals) => {
+        let queryString = "INSERT INTO " + table;
+
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+
+        console.log(queryString);
+
+        return this.query(queryString, vals);
+    }
+
+    updateOne = (table, objColVals, condition) => {
+        let queryString = "UPDATE " + table;
+
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+
+        console.log(queryString);
+
+        return this.query(queryString);
+    }
+
+    deleteOne = (table, condition) => {
+        var queryString = "DELETE FROM " + table;
+        queryString += " WHERE ";
+        queryString += condition;
+
+        console.log(queryString);
+
+        return this.query(queryString);
+    }
 }
-/////////////////////////////////////////////////////////////////////////////
 
-const orm = {
-    selectAll: function (tableInput) {
-        return new Promise((resolve, reject) => {
-            var queryString = "SELECT * FROM ??";
-
-            connection.query(queryString, [tableInput], function (err, result) {
-                if (err) reject(err);
-                resolve(result);
-            });
-        });
-    },
-    insertOne: function (table, cols, vals) {
-        return new Promise((resolve, reject) => {
-            var queryString = "INSERT INTO " + table;
-
-            queryString += " (";
-            queryString += cols.toString();
-            queryString += ") ";
-            queryString += "VALUES (";
-            queryString += printQuestionMarks(vals.length);
-            queryString += ") ";
-
-            console.log(queryString);
-
-            connection.query(queryString, vals, function (err, result) {
-                if (err) reject(err);
-                resolve(result);
-            });
-        });
-    },
-    updateOne: function (table, objColVals, condition) {
-        return new Promise((resolve, reject) => {
-            var queryString = "UPDATE " + table;
-
-            queryString += " SET ";
-            queryString += objToSql(objColVals);
-            queryString += " WHERE ";
-            queryString += condition;
-
-            console.log(queryString);
-
-            connection.query(queryString, function (err, result) {
-                if (err) reject(err);
-                resolve(result);
-            });
-        });
-    },
-    deleteOne: function (table, condition) {
-        return new Promise((resolve, reject) => {
-            var queryString = "DELETE FROM " + table;
-            queryString += " WHERE ";
-            queryString += condition;
-
-            console.log(queryString);
-
-            connection.query(queryString, function (err, result) {
-                if (err) reject(err);
-                resolve(result);
-            });
-        });
-    }
-};
-
-
-
-
-module.exports = orm;
-
-
-
-
+module.exports = ORM;
 
 /* * In the `orm.js` file, create the methods that will execute the necessary
 MySQL commands in the controllers. These are the methods you will need to use
