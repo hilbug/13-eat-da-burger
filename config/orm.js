@@ -81,6 +81,20 @@ const orm = {
                 resolve(result);
             });
         });
+    },
+    deleteOne: function (table, condition) {
+        return new Promise((resolve, reject) => {
+            var queryString = "DELETE FROM " + table;
+            queryString += " WHERE ";
+            queryString += condition;
+
+            console.log(queryString);
+
+            connection.query(queryString, function (err, result) {
+                if (err) reject(err);
+                resolve(result);
+            });
+        });
     }
 };
 
