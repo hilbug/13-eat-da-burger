@@ -1,6 +1,6 @@
 const connection = require('./connection');
 
-/////// from Cats 13-3 exercise #17 //////////
+////////////// from Cats 13-3 exercise #17 //////////////////////////////
 const printQuestionMarks = (num) => {
     var arr = [];
 
@@ -60,6 +60,23 @@ const orm = {
             console.log(queryString);
 
             connection.query(queryString, vals, function (err, result) {
+                if (err) reject(err);
+                resolve(result);
+            });
+        });
+    },
+    updateOne: function (table, objColVals, condition) {
+        return new Promise((resolve, reject) => {
+            var queryString = "UPDATE " + table;
+
+            queryString += " SET ";
+            queryString += objToSql(objColVals);
+            queryString += " WHERE ";
+            queryString += condition;
+
+            console.log(queryString);
+
+            connection.query(queryString, function (err, result) {
                 if (err) reject(err);
                 resolve(result);
             });
