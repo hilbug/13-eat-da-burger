@@ -20,7 +20,5 @@ const burger = {
     */
 }
 
-
-// what do we export out of this file??
-// Export the database functions for the controller (catsController.js).
-//module.exports = burger;
+// Export the database functions for the controller (burger_controller.js).
+module.exports = burger;
