@@ -1,7 +1,7 @@
 const orm = require('../config/orm');
 
 // Call orm method, passing in the anonymous function(with "res") as the callback.
-orm.selectAll("parties").then((result) => {
+orm.selectAll("burgers").then((result) => {
     console.log(result);
 });
 
