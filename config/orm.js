@@ -56,11 +56,11 @@ class ORM {
 
 
     selectAll(tableInput) {
-        //let queryString = "SELECT * FROM" + tableInput + ";";
+        let queryString = "SELECT * FROM " + tableInput + ";";
 
         console.log(queryString);
 
-        return this.query(`SELECT * FROM ${tableInput};`);
+        return this.query(queryString);
     }
 
     insertOne = (table, cols, vals) => {
