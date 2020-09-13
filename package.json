@@ -1,0 +1,24 @@
+{
+  "name": "13-eat-da-burger",
+  "version": "1.0.0",
+  "description": "A burger logger app using MySQL, Node, Express, Handlebars and a homemade ORM (yum!).",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hilbug/13-eat-da-burger.git"
+  },
+  "author": "hilary ferraro",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hilbug/13-eat-da-burger/issues"
+  },
+  "homepage": "https://github.com/hilbug/13-eat-da-burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.1.0",
+    "mysql": "^2.18.1"
+  }
+}
