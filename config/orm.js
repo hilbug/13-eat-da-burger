@@ -1,5 +1,7 @@
 // ORM class provided by Bobby
 // Import MySQL connection.
+const mysql = require('mysql');
+
 class ORM {
     connection;
 
@@ -53,12 +55,12 @@ class ORM {
     /////////////////////////////////////////////////////////////////////////////
 
 
-    selectAll = (tableInput) => {
-        let queryString = "SELECT * FROM ?? ;";
+    selectAll(tableInput) {
+        //let queryString = "SELECT * FROM" + tableInput + ";";
 
         console.log(queryString);
 
-        return this.query(queryString);
+        return this.query(`SELECT * FROM ${tableInput};`);
     }
 
     insertOne = (table, cols, vals) => {
