@@ -20,6 +20,7 @@ class ORM {
         })
     };
     ////////////// from Cats 13-3 exercise #17 //////////////////////////////
+    
     printQuestionMarks = (num) => {
         var arr = [];
 
@@ -29,6 +30,7 @@ class ORM {
 
         return arr.toString();
     }
+    
 
     // Helper function to convert object key/value pairs to SQL syntax
     objToSql = (ob) => {
@@ -54,7 +56,6 @@ class ORM {
     }
     /////////////////////////////////////////////////////////////////////////////
 
-
     selectAll(tableInput) {
         let queryString = "SELECT * FROM " + tableInput + ";";
 
@@ -63,14 +64,14 @@ class ORM {
         return this.query(queryString);
     }
 
-    insertOne = (table, cols, vals) => {
+    insertOne(table, cols, vals) {
         let queryString = "INSERT INTO " + table;
 
         queryString += " (";
         queryString += cols.toString();
         queryString += ") ";
         queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
+        queryString += this.printQuestionMarks(vals.length);
         queryString += ") ";
 
         console.log(queryString);
@@ -78,11 +79,11 @@ class ORM {
         return this.query(queryString, vals);
     }
 
-    updateOne = (table, objColVals, condition) => {
+    updateOne(table, objColVals, condition) {
         let queryString = "UPDATE " + table;
 
         queryString += " SET ";
-        queryString += objToSql(objColVals);
+        queryString += this.objToSql(objColVals);
         queryString += " WHERE ";
         queryString += condition;
 
@@ -91,7 +92,7 @@ class ORM {
         return this.query(queryString);
     }
 
-    deleteOne = (table, condition) => {
+    deleteOne(table, condition) {
         var queryString = "DELETE FROM " + table;
         queryString += " WHERE ";
         queryString += condition;
