@@ -57,20 +57,26 @@ router.put("/api/burgers/:id", async (req, res) => {
     }
 });
 
-/*
-router.delete("/api/burgers/:id", (req, res) => {
-  var condition = "id = " + req.params.id;
- 
-  burger.deleteOne(condition, (result) => {
-    if (result.affectedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
+
+router.delete("/api/burgers/:id", async (req, res) => {
+    const condition = "id = " + req.params.id;
+
+    try {
+        const result = await burger.deleteOne(condition);
+
+        if (result.affectedRows == 0) {
+            // If no rows were changed, then the ID must not exist, so 404
+            return res.status(404).end();
+          } else {
+            res.status(200).end();
+          }
     }
-  });
+    catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
 });
-*/
+
 
 // Export routes for server.js to use.
 module.exports = router;
