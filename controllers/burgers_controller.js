@@ -16,14 +16,25 @@ router.get("/", async (req, res) => {
 
 });
 
-/*
-router.post("/api/burgers", (req, res) => {
-  burger.insertOne(["burger_name", "devoured"],[req.body.burger_name, req.body.devoured]).then((data) => {
-    // Send back the ID of the new quote
-    data.json({ id: result.insertId });
-  });
+
+router.post("/api/burgers", async (req, res) => {
+    try {
+        const result = await burger.insertOne(
+            //cols
+            ["burger_name", "devoured"],
+            // vals
+            [req.body.burger_name, req.body.devoured]
+        );
+        // Send back the ID of the new burger
+        res.json({ id: result.insertId });
+    }
+    catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
 });
 
+/*
 router.put("/api/burgers/:id", (req, res) => {
   var condition = "id = " + req.params.id;
  
