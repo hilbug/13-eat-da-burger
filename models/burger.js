@@ -4,12 +4,14 @@ const dbManager = require("../config/burgerDbManager");
 const burger = {
     selectAll: function() {
         return dbManager.selectAll("burgers");
-    }
-    /*
-    orm.insertOne("burgers", cols, vals).then((result) => {
-        console.log(result);
-    });
+    },
     
+    // The variables cols and vals are arrays.
+    insertOne: function(cols, vals) {
+        return dbManager.insertOne("burgers", cols, vals);
+    }
+
+    /*
     orm.updateOne("burgers", objColVals, condition).then((result) => {
         console.log(result);
     });
