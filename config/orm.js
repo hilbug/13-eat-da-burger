@@ -1,4 +1,6 @@
 // ORM class provided by Bobby
+// Helper functions from from Cats 13-3 exercise #17
+
 // Import MySQL connection.
 const mysql = require('mysql');
 
@@ -19,7 +21,6 @@ class ORM {
             });
         })
     };
-    ////////////// from Cats 13-3 exercise #17 //////////////////////////////
     
     printQuestionMarks = (num) => {
         var arr = [];
@@ -54,7 +55,6 @@ class ORM {
         // translate array of strings to a single comma-separated string
         return arr.toString();
     }
-    /////////////////////////////////////////////////////////////////////////////
 
     selectAll(tableInput) {
         let queryString = "SELECT * FROM " + tableInput + ";";
