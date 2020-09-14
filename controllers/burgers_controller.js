@@ -34,24 +34,30 @@ router.post("/api/burgers", async (req, res) => {
     }
 });
 
-/*
-router.put("/api/burgers/:id", (req, res) => {
-  var condition = "id = " + req.params.id;
- 
-  console.log("condition", condition);
- 
-  burger.updateOne({
-    devoured: req.body.devoured
-  }, condition, (result) => {
-    if (result.changedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
+router.put("/api/burgers/:id", async (req, res) => {
+    const condition = "id = " + req.params.id;
+    console.log("condition", condition);
+
+    try {
+        const result = await burger.updateOne(
+            { devoured: req.body.devoured },
+            condition
+        );
+
+        if (result.changedRows == 0) {
+            // If no rows were changed, then the ID must not exist, so 404
+            return res.status(404).end();
+          } else {
+            res.status(200).end();
+          }
     }
-  });
+    catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
 });
- 
+
+/*
 router.delete("/api/burgers/:id", (req, res) => {
   var condition = "id = " + req.params.id;
  
