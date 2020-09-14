@@ -13,12 +13,11 @@ const burger = {
 
     updateOne: function(objColVals, condition) {
         return dbManager.updateOne("burgers", objColVals, condition);
+    },
+    
+    deleteOne: function(condition) {
+        return dbManager.deleteOne("burgers", condition)
     }
-    /*
-    orm.deleteOne("burgers", condition).then((result) => {
-        console.log(result);
-    });
-    */
 }
 
 // Export the database functions for the controller (burger_controller.js).
