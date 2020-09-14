@@ -9,13 +9,12 @@ const burger = {
     // The variables cols and vals are arrays.
     insertOne: function(cols, vals) {
         return dbManager.insertOne("burgers", cols, vals);
-    }
+    },
 
+    updateOne: function(objColVals, condition) {
+        return dbManager.updateOne("burgers", objColVals, condition);
+    }
     /*
-    orm.updateOne("burgers", objColVals, condition).then((result) => {
-        console.log(result);
-    });
-    
     orm.deleteOne("burgers", condition).then((result) => {
         console.log(result);
     });
