@@ -5,20 +5,39 @@
 </header>
 
 {{!-- Container --}}
+<div class="container">
 
-{{!-- row --}}
+    {{!-- Form Row--}}
+    <div class="row">
+        {{!-- col 12 --}}
 
-    {{!-- col 12 --}}
+        {{!-- Form box, text, submit button --}}
+    {{!-- End Form Row --}}
+    </div>
 
-    {{!-- Form box, text, submit button --}}
+    {{!-- Burgers Row --}}
+    <div class="row">
+        {{!-- to be devoured--}}
+        <div class="col-6">
+            <h2 class="text-center">Try Me!</h2>
+            <ul>
+            {{#each burgersNotDevoured}}
+                {{> burgers/burgerNotDevoured-block}}
+            {{/each}}
+            </ul>
+        </div>
+        {{!-- devoured --}}
+        <div class="col-6">
+            <h2 class="text-center">Tried and True!</h2>
+            <ul>
+            {{#each burgersDevoured}}
+                {{> burgers/burgerDevoured-block}}
+            {{/each}}
+            </ul>
+        </div>
+        </div>
+    {{!-- End Burger Row --}}
+    </div>
 
-{{!-- row --}}
-
-    {{!-- col 6 - to be devoured--}}
-
-        {{!-- List of non-devoured burgers with Devour it! button --}}
-
-    {{!-- col 6 - devoured --}}
-
-        {{!-- List of devoured burgers with delete button --}}
-
+{{!-- End Container --}}
+</div>
