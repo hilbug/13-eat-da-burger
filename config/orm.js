@@ -64,6 +64,17 @@ class ORM {
         return this.query(queryString);
     }
 
+    selectAllWhere(tableInput, condition) {
+        let queryString = "SELECT * FROM " + tableInput;
+
+        queryString += " WHERE ";
+        queryString += condition;
+
+        console.log(queryString);
+
+        return this.query(queryString);
+    }
+
     insertOne(table, cols, vals) {
         let queryString = "INSERT INTO " + table;
 
