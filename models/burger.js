@@ -5,6 +5,10 @@ const burger = {
     selectAll: function() {
         return dbManager.selectAll("burgers");
     },
+
+    selectAllWhere: function(condition) {
+        return dbManager.selectAllWhere("burgers", condition);
+    },
     
     // The variables cols and vals are arrays.
     insertOne: function(cols, vals) {
