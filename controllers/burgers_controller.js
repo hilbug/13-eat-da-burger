@@ -4,8 +4,13 @@ const burger = require('../models/burger.js');
 
 // Create the `router` for the app, and export the `router` at the end of your file.
 router.get("/", async (req, res) => {
+    const condition1 = "devoured = 0";
+    const condition2 = "devoured = 1";
     try {
-        const hbsObject = { burgers: await burger.selectAll() };
+        const hbsObject = { 
+            burgersNotDevoured: await burger.selectAllWhere(condition1),
+            burgersDevoured: await burger.selectAllWhere(condition2)
+        };
         console.log(hbsObject);
         res.render("index", hbsObject);
     }
