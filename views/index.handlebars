@@ -10,34 +10,47 @@
     {{!-- Form Row--}}
     <div class="row">
         {{!-- col 12 --}}
+        <div class="col-12 text-center">
+            {{!-- Form box, text, submit button --}}
+            <h2>What do you want to try?</h2>
+            <form class="create-form">
 
-        {{!-- Form box, text, submit button --}}
-    {{!-- End Form Row --}}
+                <div class="form-group">
+                    <label for="burg">Enter a name for your burger here:</label>
+                    <textarea class="form-control form-control-lg w-50 mx-auto" id="burg" rows="2" name="burger-name"></textarea>
+                </div>
+
+                <button class="btn btn-outline-secondary" type="submit">Add Your Burger!</button>
+            </form>
+
+        </div>
+
+        {{!-- End Form Row --}}
     </div>
 
     {{!-- Burgers Row --}}
-    <div class="row">
+    <div class="row mt-5">
         {{!-- to be devoured--}}
         <div class="col-6">
             <h2 class="text-center">Try Me!</h2>
             <ul>
-            {{#each burgersNotDevoured}}
+                {{#each burgersNotDevoured}}
                 {{> burgers/burgerNotDevoured-block}}
-            {{/each}}
+                {{/each}}
             </ul>
         </div>
         {{!-- devoured --}}
         <div class="col-6">
             <h2 class="text-center">Tried and True!</h2>
             <ul>
-            {{#each burgersDevoured}}
+                {{#each burgersDevoured}}
                 {{> burgers/burgerDevoured-block}}
-            {{/each}}
+                {{/each}}
             </ul>
         </div>
-        </div>
-    {{!-- End Burger Row --}}
     </div>
+    {{!-- End Burger Row --}}
+</div>
 
 {{!-- End Container --}}
 </div>
