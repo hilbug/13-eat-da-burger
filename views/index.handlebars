@@ -1,26 +1,27 @@
 <!-- Header, Description, Today's Date, Time -->
-<header class="jumbotron">
-    <h1 class="display-4 text-center">EAT-DA-BURGER!</h1>
-    <p class="lead text-center">The burger tracker you didn't know you needed</p>
+<header class="jumbotron text-center p-1">
+    <img class="logo img-fluid" src="../assets/img/website_logo_transparent_background.png" alt="eat-da-burger logo">
+    <p class="lead red-text">The burger tracker you didn't know you needed</p>
 </header>
 
 {{!-- Container --}}
-<div class="container">
+<div class="container pb-3">
 
     {{!-- Form Row--}}
     <div class="row">
         {{!-- col 12 --}}
         <div class="col-12 text-center">
             {{!-- Form box, text, submit button --}}
-            <h2>What do you want to try?</h2>
+            <h2 class="org-text">What do you want to try?</h2>
             <form class="create-form">
 
                 <div class="form-group">
-                    <label for="burg">Enter a name for your burger here:</label>
-                    <textarea class="form-control form-control-lg w-50 mx-auto" id="burg" rows="2" name="burger-name"></textarea>
+                    <label class="red-text" for="burg">Enter a name for your burger here:</label>
+                    <textarea class="form-control form-control-lg w-50 mx-auto" id="burg" rows="2"
+                        name="burger-name"></textarea>
                 </div>
 
-                <button class="btn btn-outline-secondary" type="submit">Add Your Burger!</button>
+                <button class="btn btn-outline-secondary red-text" type="submit">Add Your Burger!</button>
             </form>
 
         </div>
@@ -31,8 +32,8 @@
     {{!-- Burgers Row --}}
     <div class="row mt-5">
         {{!-- to be devoured--}}
-        <div class="col-6">
-            <h2 class="text-center">Try Me!</h2>
+        <div class="col-md-6">
+            <h2 class="text-center org-text">Try Me!</h2>
             <ul>
                 {{#each burgersNotDevoured}}
                 {{> burgers/burgerNotDevoured-block}}
@@ -40,17 +41,30 @@
             </ul>
         </div>
         {{!-- devoured --}}
-        <div class="col-6">
-            <h2 class="text-center">Tried and True!</h2>
+        <div class="col-md-6">
+            <h2 class="text-center org-text">Tried and True!</h2>
             <ul>
                 {{#each burgersDevoured}}
                 {{> burgers/burgerDevoured-block}}
                 {{/each}}
             </ul>
         </div>
+        {{!-- End Burger Row --}}
     </div>
-    {{!-- End Burger Row --}}
-</div>
 
+    {{!-- Inspiration Row --}}
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <h2 class="org-text">Need some burger inspiration?</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/6tceQzEojng" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    {{!-- End Inspiration Row --}}
+    </div>
 {{!-- End Container --}}
 </div>
+
+{{!-- Footer --}}
+<footer class="footer text-center p-2 mt-2 bg-gray">
+<p class="red-text m-0">Copyright © 2020 Hilary Ferraro | Logo: BrandCrowd</p>
+</footer>
+{{!-- Footer from: https://css-tricks.com/couple-takes-sticky-footer/ --}}
