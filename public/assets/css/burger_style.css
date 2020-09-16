@@ -1,7 +1,51 @@
+/* Start Sticky Footer 
+https://css-tricks.com/couple-takes-sticky-footer/ */
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.container {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+  font-size: small;
+}
+/* End Sticky Footer */
+
+/* Full width for background color on a row */
+.inner-but-full {
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  /* Sources: 
+  https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/ 
+  https://stackoverflow.com/questions/28565976/css-how-to-overflow-from-div-to-full-width-of-screen
+  */
+}
+
+/* Background Color */
+.bg-gray {
+  background-color: #e9ecef;
+}
+
+/* Text colors */
+.red-text {
+  color: rgb(235, 34, 32);
+}
+
+.org-text {
+  color: rgb(241 106 16);
+}
+
+/* Max width for burger name input */
 #burg {
   max-width: 330px;
 }
 
+/* List formatting */
 li {
     padding: 5px;
     margin: 5px;
