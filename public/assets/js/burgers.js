@@ -1,17 +1,58 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-// Submit - form data to post - insertOne
-    // let newBurger = { name: burgerBox, devoured: 0 }
-    // type: POST  data: newBurger
+    // UPDATE burger to be devoured //
+    $(".change-devoured").on("click", function(event) {
+    const id = $(this).data("id");
 
-// Devoured button - put - updateOne to move devoured to 1
-    // need: data-id and data-devoured in handlebars button
-    // devoured button clicked - newDevourState = devoured: 1
-    // type: PUT data: newDevourState
+    // Send the PUT request.
+    $.ajax(`/api/burgers/${id}`, {
+      type: "PUT",
+      data: { devoured: 1 }
+    }).then(
+      function() {
+        console.log(`changed devoured to true`);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 
-// Delete button - delete - deleteOne
-    // need: data-id
-    // DELETE - type: delete
+  // ADD burger to database //
+  $(".create-form").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
 
-// Non-devoured list - get - selectAll and filter non-devoured and devoured or does this happen in handlebars?
+    const newBurger = {
+      burger_name: $("#burg").val().trim(),
+      devoured: 0
+    };
+
+    // Send the POST request.
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("created new burger");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+
+  // DELETE burger from database //
+  $(".delete-burger").on("click", function(event) {
+    const id = $(this).data("id");
+
+    // Send the DELETE request.
+    $.ajax(`/api/burgers/${id}`, {
+      type: "DELETE"
+    }).then(
+      function() {
+        console.log(`deleted burger ${id}`);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 });
