@@ -17,7 +17,7 @@
 
                 <div class="form-group">
                     <label class="red-text" for="burg">Enter a name for your burger here:</label>
-                    <textarea class="form-control form-control-lg w-50 mx-auto" id="burg" rows="2"
+                    <textarea required class="form-control form-control-lg w-50 mx-auto" id="burg" rows="2"
                         name="burger-name"></textarea>
                 </div>
 
@@ -30,11 +30,11 @@
     </div>
 
     {{!-- Burgers Row --}}
-    <div class="row mt-5">
+    <div class="row mt-5 pt-3 inner-but-full bg-gray">
         {{!-- to be devoured--}}
         <div class="col-md-6">
             <h2 class="text-center org-text">Try Me!</h2>
-            <ul>
+            <ul class="pl-0">
                 {{#each burgersNotDevoured}}
                 {{> burgers/burgerNotDevoured-block}}
                 {{/each}}
@@ -43,7 +43,7 @@
         {{!-- devoured --}}
         <div class="col-md-6">
             <h2 class="text-center org-text">Tried and True!</h2>
-            <ul>
+            <ul class="pl-0">
                 {{#each burgersDevoured}}
                 {{> burgers/burgerDevoured-block}}
                 {{/each}}
@@ -67,4 +67,3 @@
 <footer class="footer text-center p-2 mt-2 bg-gray">
 <p class="red-text m-0">Copyright © 2020 Hilary Ferraro | Logo: BrandCrowd</p>
 </footer>
-{{!-- Footer from: https://css-tricks.com/couple-takes-sticky-footer/ --}}
