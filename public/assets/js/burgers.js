@@ -34,8 +34,14 @@ $(function() {
     }).then(
       function() {
         console.log("created new burger");
-        // Reload the page to get the updated list
-        location.reload();
+        
+        // Display message to the user when burger is added and reload page after two seconds
+        const yayDiv = $("<p>").addClass("font-weight-light font-italic").css("display", "block").text("Your burger has been added!");
+        $(".create-form").append(yayDiv);
+
+        setTimeout(function () {
+          location.reload();
+      }, 2000);
       }
     );
   });
