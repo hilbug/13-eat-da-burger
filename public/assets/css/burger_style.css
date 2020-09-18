@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 /* Start Sticky Footer 
 https://css-tricks.com/couple-takes-sticky-footer/ */
 html, body {
@@ -13,22 +19,41 @@ body {
 .footer {
   flex-shrink: 0;
   font-size: small;
+  background-color: rgb(240, 236, 236);
 }
 /* End Sticky Footer */
 
-/* Full width for background color on a row */
-.inner-but-full {
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  /* Sources: 
-  https://cloudfour.com/thinks/breaking-out-with-viewport-units-and-calc/ 
-  https://stackoverflow.com/questions/28565976/css-how-to-overflow-from-div-to-full-width-of-screen
-  */
+/* Set viewport height to 100
+Sources: 
+viewport 100vh:
+https://codepen.io/ckor/pen/lBnxh/
+https://medium.com/@ckor/make-full-screen-sections-with-1-line-of-css-b82227c75cbd
+*/
+
+.full-section {
+  width: 100%;
+  padding: 0 7%;
+  display: table;
+  margin: 0;
+  max-width: none;
+  height: 100vh;
 }
 
-/* Background Color */
-.bg-gray {
-  background-color: #e9ecef;
+.semi-vh {
+  width: 100%;
+  padding: 0 7%;
+  display: table;
+  margin: 0;
+  max-width: none;
+  height: 80vh;
+}
+
+/* Animated scroll arrow
+Idea from: https://www.youtube.com/watch?v=zZNcdwXshU0
+*/
+.fa-chevron-down {
+  animation: arrow-down .5s alternate infinite;
+  
 }
 
 /* Text colors */
@@ -55,4 +80,23 @@ li {
   
   .label {
     font-weight: bold;
+  }
+
+  /* Animation keyframes for scroll arrow */
+  @keyframes arrow-down {
+    0% {
+      opacity: 0;
+    }
+    25% {
+      opacity: .25;
+    }
+    50% {
+      opacity: .5;
+    }
+    75% {
+      opacity: .75;
+    }
+    100% {
+      opacity: 1;
+    }
   }
