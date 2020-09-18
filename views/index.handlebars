@@ -1,69 +1,81 @@
 <!-- Header, Description, Today's Date, Time -->
-<header class="jumbotron text-center p-1">
-    <img class="logo img-fluid" src="../assets/img/website_logo_transparent_background.png" alt="eat-da-burger logo">
-    <p class="lead red-text">The burger tracker you didn't know you needed</p>
-</header>
-
-{{!-- Container --}}
-<div class="container pb-3">
-
-    {{!-- Form Row--}}
+<header class="container text-center full-section d-flex justify-content-center align-items-center">
     <div class="row">
-        {{!-- col 12 --}}
         <div class="col-12 text-center">
-            {{!-- Form box, text, submit button --}}
-            <h2 class="org-text">What do you want to try?</h2>
+            <img class="logo img-fluid" src="../assets/img/website_logo_transparent_background.png"
+                alt="eat-da-burger logo">
+            <p class="lead red-text font-weight-lighter">The burger logger you didn't know you needed</p>
+            {{!-- Form box --}}
+            <h4 class="org-text">Which burgers do you want to try?</h4>
             <form class="create-form">
-
                 <div class="form-group">
                     <label class="red-text" for="burg">Enter a name for your burger here:</label>
                     <textarea required class="form-control form-control-lg w-50 mx-auto" id="burg" rows="2"
                         name="burger-name"></textarea>
                 </div>
-
-                <button class="btn btn-outline-secondary red-text" type="submit">Add Your Burger!</button>
+                {{!-- Submitt button --}}
+                <button class="btn btn-outline-secondary red-text mb-3" type="submit">Add Your Burger</button>
             </form>
-
+            {{!-- End Form --}}
+            <a href="#burger-log"><i class="fas fa-chevron-down red-text"></i></a>
         </div>
-
-        {{!-- End Form Row --}}
     </div>
+</header>
 
+
+{{!-- Container --}}
+<div class="container">
     {{!-- Burgers Row --}}
-    <div class="row mt-5 pt-3 inner-but-full bg-gray">
-        {{!-- to be devoured--}}
-        <div class="col-md-6">
-            <h2 class="text-center org-text">Try Me!</h2>
-            <ul class="pl-0">
-                {{#each burgersNotDevoured}}
-                {{> burgers/burgerNotDevoured-block}}
-                {{/each}}
-            </ul>
+    <section id="burger-log" class="full-section">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center red-text pb-3">Burger Log</h2>
+                <div class="row">
+                    {{!-- to be devoured--}}
+                    <div class="col-md-6">
+                        <h3 class="text-center org-text">Try Me!</h3>
+                        <ul class="pl-0">
+                            {{#each burgersNotDevoured}}
+                            {{> burgers/burgerNotDevoured-block}}
+                            {{/each}}
+                        </ul>
+                    </div>
+                    {{!-- devoured --}}
+                    <div class="col-md-6">
+                        <h3 class="text-center org-text">Tried and True!</h3>
+                        <ul class="pl-0">
+                            {{#each burgersDevoured}}
+                            {{> burgers/burgerDevoured-block}}
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="#burger-video">
+                        <i class="fas fa-chevron-down red-text"></i>
+                    </a>
+                </div>
+            </div>
+            {{!-- End Burger Row --}}
         </div>
-        {{!-- devoured --}}
-        <div class="col-md-6">
-            <h2 class="text-center org-text">Tried and True!</h2>
-            <ul class="pl-0">
-                {{#each burgersDevoured}}
-                {{> burgers/burgerDevoured-block}}
-                {{/each}}
-            </ul>
-        </div>
-        {{!-- End Burger Row --}}
-    </div>
+    </section>
 
     {{!-- Inspiration Row --}}
-    <div class="row mt-5">
-        <div class="col-12 text-center">
-            <h2 class="org-text">Need some burger inspiration?</h2>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/6tceQzEojng" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <section id="burger-video" class="semi-section">
+        <div class="row mt-5 pb-5">
+            <div class="col-12 text-center">
+                <h2 id="burg-video" class="org-text">Need some burger inspiration?</h2>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6tceQzEojng" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+            {{!-- End Inspiration Row --}}
         </div>
-    {{!-- End Inspiration Row --}}
-    </div>
-{{!-- End Container --}}
+    </section>
+    {{!-- End Container --}}
 </div>
 
 {{!-- Footer --}}
 <footer class="footer text-center p-2 mt-2 bg-gray">
-<p class="red-text m-0">Copyright © 2020 Hilary Ferraro | Logo: BrandCrowd</p>
+    <p class="red-text m-0">Copyright © 2020 Hilary Ferraro | Logo: BrandCrowd</p>
 </footer>
