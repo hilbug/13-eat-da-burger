@@ -1,4 +1,5 @@
 # EAT-DA-BURGER
+The burger logger you didn't know you needed 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
